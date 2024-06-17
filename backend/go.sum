@@ -1,0 +1,4 @@
+github.com/emer/emergent v1.4.31 h1:CK27lI3/jTH8Sq7ySZ1hlkFX8wgjeHrsE/rIdvWHd+Q=
+github.com/emer/emergent v1.4.31/go.mod h1:ILxelktdMeqzAHj4wVf7jLc1j91hPuEK72XZCDPxPS8=
+golang.org/x/sync v0.7.0 h1:YsImfSBoP9QPYL0xyKJPq0gcaJdG3rInoqxTWbfQu9M=
+golang.org/x/sync v0.7.0/go.mod h1:Czt+wKu1gCyEFDUtn0jG5QVvpJ6rzVqr5aXyt9drQfk=

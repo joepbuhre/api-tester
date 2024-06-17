@@ -1,0 +1,53 @@
+---
+title: "Analysis of Test Results"
+author: "Your Name"
+date: "`r format(Sys.time(), '%Y-%m-%d')`"
+output:
+  html_document:
+    theme: cosmo
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(dplyr)
+knitr::opts_knit$set(root.dir = getwd())
+```
+
+```{r}
+# Load the CSV file
+file_path <- "/home/jbuhre/development/joepbuhre/api-tester/results/test.csv"
+data <- read.csv(file_path)
+
+
+
+# Parse specific columns
+data_subset <- data[, c("n", "durationms", "total_loops", "group_limit")]
+
+# data_subset <- data_subset %>% filter(total_loops<100)
+
+# Create plots faceted by total_loops and group_limit
+
+
+#data_subset <- data_subset %>% filter(total_loops == 100)  
+mean_duration <- mean(data_subset$durationms)
+
+ggplot(data_subset, aes(x = n, y = durationms,  color = factor(group_limit))) +
+  geom_point() +
+  labs(x = "n", y = "Duration (ms)", title = "Test Results Analysis") +
+  scale_color_discrete(name = "Group Limit") +
+  geom_hline(yintercept = mean_duration, linetype = "dashed", color = "red") +
+  theme_minimal()
+
+
+ggplot(data_subset, aes(x=durationms)) +
+            geom_histogram(aes(y = ..density..), binwidth=50000, colour="black", fill="white") +
+            stat_function(fun = dnorm, lwd = 0.5, col = 'red', 
+                          args = list(mean = mean_duration, sd = sd(data_subset$durationms)))
+
+
+summary(data_subset$durationms)
+
+```
+
+
